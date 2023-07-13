@@ -1,0 +1,38 @@
+html,
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.panel-heading{
+    font-size: 18px;
+    text-align: center;
+}
+
+
+
+.col-md-3{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+   
+    
+}
+
+@media screen and (max-width: 1280px) {
+    .col-md-3 {
+        top: 50%;
+        left: 50%;
+        transform: scale(0.75) translate(-65%,-65%);
+        position: absolute;
+    }
+}
+
+
+
+.btn{
+    margin-bottom: 22px;
+}
+
+

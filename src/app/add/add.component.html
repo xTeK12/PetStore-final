@@ -1,0 +1,85 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <a routerLink="/" class="navbar-brand">Pet Store</a>
+      </div>
+
+      <div class="collapse navbar-collapse">
+          <ul class="nav nav-tabs">
+              <li
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact:true}"><a routerLink="/add">Add Pet</a></li>
+              <li routerLinkActive="active"><a routerLink="/list">Pet List</a></li>
+              
+          </ul>
+          
+      </div>
+  </div>
+</nav>
+
+<div class="col-md-3">
+<h2>Add Pet</h2>
+<hr>
+<div class="panel panel-default">
+    <div class="panel-heading">Adding a pet</div>
+    <div class="panel-body">
+        <form [formGroup]="petForm"
+        (ngSubmit)="submitForm(); petForm.reset()">
+      <div class="form-group">
+        <label class="form-label" >Name</label>
+        <input 
+        type="text" 
+        class="form-control input-sm" 
+        id="name" 
+        formControlName="name"
+        (input)="onInputChange()"
+        placeholder="Enter name" required>
+        <span class="form-text text-danger" *ngIf="name.errors?.['required'] && (name.touched || name.dirty || messageWarning)">name is required</span>
+        <span class="form-text text-danger" *ngIf="name.errors?.['minlength'] && (name.touched || name.dirty)">name is too short. at least 2 caracters</span>
+        <span class="form-text text-danger" *ngIf="name.errors?.['pattern'] && (name.touched || name.dirty)">first name should start with Alphabet</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category</label>
+        <select  class="form-control input-sm" formControlName="category">
+          <option value="not selected">not selected</option>
+          <option value="Fish">Fish </option>
+          <option value="Reptiles">Reptiles </option>
+          <option value="Amphibians">Amphibians </option>
+          <option value="Birds">Birds </option>
+          <option value="Mammals">Mammals </option>
+        </select>
+      </div>     
+      <div class="form-group">
+        <label class="form-label">Status</label>
+        <select class="form-control input-sm" name="status" formControlName="status" (input)="onInputChange()" id="status" required>
+            <option value="available">available</option>
+            <option value="pending">pending</option>
+            <option value="sold">sold</option>
+          </select>
+          <span class="form-text text-danger" *ngIf="status.errors?.['required'] && (status.touched || status.dirty || messageWarning)">select  status for your pet</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">ID</label>
+        <input type="number" class="form-control input-sm" (input)="onInputChange()" id="ID" formControlName="ID" placeholder="Enter ID" required>
+        <span class="form-text text-danger" *ngIf="ID?.invalid && (ID?.touched || messageWarning)">ID is required</span>
+      </div>
+      <!-- <div class="form-group">
+        <label for="description" class="form-label">Description</label>
+        <textarea name="description" class="form-control" formControlName="description"  rows="2"></textarea>
+      </div> -->
+
+      <div class="text-center">
+      <button class="btn btn-primary">Submit</button>
+    </div>
+      <div class="message">
+        <div *ngIf="messageSuccess"  class="alert alert-success" role="alert">
+          Your pet was added successfully!
+        </div>
+        <div *ngIf="messageWarning" class="alert alert-warning" role="alert">
+          You must fill this fileds!
+        </div>
+      </div>
+        </form>
+    </div>
+</div>
+</div>

@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a routerLink="/" class="navbar-brand">Pet Store</a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <ul class="nav nav-tabs">
+                <li
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact:true}"><a routerLink="/add">Add Pet</a></li>
+                <li routerLinkActive="active"><a routerLink="/list">Pet List</a></li>
+                
+            </ul>
+            
+        </div>
+    </div>
+</nav>
+
+<div class="col-md-6" *ngFor="let info of infoPet">
+<div class="panel panel-default" >
+    <div class="panel-heading"><b>About this Pet</b></div>
+
+    <ul class="list-group" >
+        <li class="list-group-item"><b>Name</b> {{info.name}}</li>
+        <li class="list-group-item"><b>Category</b> {{info.category.name}}</li>
+        <li class="list-group-item"><b>Status</b> {{info.status}}</li>
+        <li class="list-group-item"><b>ID</b> {{info.id}}</li>
+    </ul>
+</div>
+<button class="btn btn-primary" routerLink="/list">Go to List</button>
+</div>
